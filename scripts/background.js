@@ -12,17 +12,17 @@ chrome.runtime.onInstalled.addListener(function () {
     });
 });
 
-chrome.declarativeContent.onClicked.addListener(function(tab) {
-    console.log("Hello");
-});
-
-chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-    chrome.declarativeContent.onPageChanged.addRules([{
-        conditions: [new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: {
-                hostEquals: 'google'
-            },
-        })],
-        actions: [new chrome.declarativeContent.ShowPageAction()]
-    }]);
+chrome.runtime.onInstalled.addListener(function(details) {
+    var rule1 = {
+        conditions: [
+          new chrome.declarativeContent.PageStateMatcher({
+            isBookmarked: true
+          })
+        ],
+        actions: [ new chrome.declarativeContent.ShowPageAction() ]
+      };
+      
+    chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {
+        chrome.declarativeContent.onPageChanged.addRules([rule1]);
+      });
 });

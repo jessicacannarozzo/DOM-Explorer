@@ -2,7 +2,7 @@
     "name": "DOM Explorer",
     "version": "1.0",
     "description": "Build an Extension!",
-    "permissions": ["activeTab","declarativeContent", "storage"], 
+    "permissions": ["activeTab","declarativeContent", "storage", "bookmarks"], 
     "background": {
         "scripts": ["/scripts/background.js"],
         "persistent": false
