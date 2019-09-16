@@ -10,10 +10,8 @@ chrome.runtime.onInstalled.addListener(function () {
     }, function () {
         console.log("The color is green.");
     });
-});
-
-chrome.runtime.onInstalled.addListener(function (details) {
-    var rule1 = {
+    //rule to make button only work if the page is bookmarked
+    var rule = {
         conditions: [
             new chrome.declarativeContent.PageStateMatcher({
                 isBookmarked: true
@@ -21,8 +19,7 @@ chrome.runtime.onInstalled.addListener(function (details) {
         ],
         actions: [new chrome.declarativeContent.ShowPageAction()]
     };
-
     chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-        chrome.declarativeContent.onPageChanged.addRules([rule1]);
+        chrome.declarativeContent.onPageChanged.addRules([rule]);
     });
 });
