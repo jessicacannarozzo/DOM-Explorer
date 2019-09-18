@@ -11,7 +11,10 @@ changeColor.addEventListener('click', element => {
         active: true,
         currentWindow: true
     }, tabs => {
-        console.log(tabs);
+        console.log(document)
+        chrome.storage.sync.get([String(tabs.url)], function(result) {
+            console.log(result)
+        });
         chrome.tabs.executeScript({
             file: '/scripts/content.js'
         });
