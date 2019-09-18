@@ -4,10 +4,10 @@
  * An effective background script is only loaded when it is needed and unloaded when it goes idle.
  */
 
-chrome.runtime.onInstalled.addListener(function () {
+chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.set({
         color: '#3aa757'
-    }, function () {
+    }, () => {
         console.log("The color is green.");
     });
     //rule to make button only work if the page is bookmarked
