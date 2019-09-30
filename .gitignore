@@ -1,2 +1,5 @@
 # personal .gitignore
 notes.txt
+
+# Node.js
+node_modules/
