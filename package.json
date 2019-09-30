@@ -1,0 +1,63 @@
+{
+  "name": "DOM-Explorer",
+  "version": "1.0.0",
+  "description": "Takes a diff of the DOM of visited pages and depicts the perctange in which the page has changed.",
+  "private": true,
+  "dependencies": {
+    "agentkeepalive": "^3.5.2",
+    "browserify": "^16.5.0",
+    "diff-dom": "^4.1.6",
+    "encoding": "^0.1.12",
+    "find-up": "^4.1.0",
+    "humanize-ms": "^1.2.1",
+    "iconv-lite": "^0.4.24",
+    "locate-path": "^5.0.0",
+    "node-fetch-npm": "^2.0.2",
+    "p-limit": "^2.2.1",
+    "p-locate": "^4.1.0",
+    "p-try": "^2.2.0",
+    "path-exists": "^4.0.0",
+    "path-is-absolute": "^1.0.1",
+    "process-nextick-args": "^2.0.1",
+    "promise-inflight": "^1.0.1",
+    "promise-retry": "^1.1.1",
+    "rc": "^1.2.8",
+    "retry": "^0.10.1",
+    "rollup-pluginutils": "^2.8.2",
+    "run-queue": "^1.0.3",
+    "safe-buffer": "^5.1.2",
+    "safer-buffer": "^2.1.2",
+    "semver": "^6.3.0",
+    "serialize-javascript": "^1.9.1",
+    "smart-buffer": "^4.0.2",
+    "socks": "^2.3.2",
+    "socks-proxy-agent": "^4.0.2",
+    "source-map": "^0.6.1",
+    "source-map-support": "^0.5.13",
+    "ssri": "^6.0.1",
+    "stream-shift": "^1.0.0",
+    "string-width": "^4.1.0",
+    "string_decoder": "^1.1.1",
+    "strip-ansi": "^5.2.0",
+    "strip-json-comments": "^2.0.1"
+  },
+  "devDependencies": {
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicacannarozzo/DOM-Explorer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessicacannarozzo/DOM-Explorer/issues"
+  },
+  "homepage": "https://github.com/jessicacannarozzo/DOM-Explorer#readme"
+}
