@@ -2,7 +2,7 @@ import {DiffDOM} from "diff-dom";
 
 function component() {
     const element = document.createElement('div');
-    dd = new diffDOM.DiffDOM();
+    var dd = new DiffDOM();
   
     element.innerHTML = "Hello world";
   
