@@ -11,3 +11,9 @@ function component() {
   
   document.body.appendChild(component());
   
+chrome.runtime.sendMessage({
+    greeting: "hello"
+},
+function (response) {
+    console.log(response.farewell)
+});

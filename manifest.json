@@ -10,12 +10,12 @@
     "page_action": {
         "default_popup": "views/popup.html",
         "default_icon": {
-            "512": "images/web_hi_res_512.png"
+            "512": "images/icon.png"
         }
     },
     "options_page": "/views/options.html",
     "icons": {
-        "512": "images/web_hi_res_512.png"
+        "512": "images/icon.png"
     },
     "manifest_version": 2
 }
