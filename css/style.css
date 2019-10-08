@@ -1,11 +1,12 @@
 body {
     display: inline-block;
-    width: 150px;
+    width: 100px;
     height: 100px;
 }
 
 #recordDOM {
     background-color: purple;
+    color
 }
 
 .content {
