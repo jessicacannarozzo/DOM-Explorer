@@ -21,9 +21,15 @@
 //     });
 // });
 
+// import {DiffDOM} from 'diff-dom';
+
 chrome.runtime.sendMessage({
-        greeting: "hello"
+        currentDOM: createHTMLString()
     },
     function (response) {
         console.log(response.farewell)
 });
+
+function createHTMLString() {
+    return document.body.outerHTML;
+}

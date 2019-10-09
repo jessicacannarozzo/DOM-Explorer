@@ -5,11 +5,11 @@
  */
 
 chrome.runtime.onInstalled.addListener(() => {
-    chrome.storage.sync.set({
-        color: '#3aa757'
-    }, () => {
-        console.log("The color is green.");
-    });
+    // chrome.storage.sync.set({
+    //     color: '#3aa757'
+    // }, () => {
+    //     console.log("The color is green.");
+    // });
     //rule to make button only work if the page is bookmarked
     var rule = {
         conditions: [
@@ -25,13 +25,12 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 //receive DOM from content.js
+//store as url: {currentDOM, prevDOM}
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        console.log(sender.tab ?
-            "from a content script " + sender.tab.url :
-            "from the extension");
-        if (request.greeting == "hello")
-            sendResponse({
-                farewell: "goodbye"
-            });
+        // console.log(sender.tab ?
+        //     "from a content script " + sender.tab.url :
+        sendResponse({
+            farewell: "goodbye"
+        });
 });

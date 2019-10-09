@@ -17,5 +17,8 @@
     "icons": {
         "512": "images/icon.png"
     },
+    "web_accessible_resources": [
+        "/scripts/diff.js"
+    ],
     "manifest_version": 2
 }

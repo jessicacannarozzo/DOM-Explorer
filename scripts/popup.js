@@ -7,19 +7,16 @@ chrome.storage.sync.get('color', function (data) {
 
 recordDOM.addEventListener('click', element => {
     let color = element.target.value;
-    // chrome.tabs.query({
-    //     active: true,
-    //     currentWindow: true
-    // }, tabs => {
-    //     console.log(document)
-    //     chrome.storage.sync.get([String(tabs.url)], function(result) {
-    //         console.log(result)
-    //     });
-    //     chrome.tabs.executeScript({
-    //         file: '/scripts/content.js'
-    //     });
-    // });
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "./diff.js"
+    chrome.tabs.query({
+        active: true,
+        currentWindow: true
+    }, tabs => {
+        console.log(document)
+        chrome.storage.sync.get([String(tabs.url)], function(result) {
+            console.log(result)
+        });
+        chrome.tabs.executeScript({
+            file: '/scripts/content.js'
+        });
+    });
 });

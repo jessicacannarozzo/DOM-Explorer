@@ -1,6 +1,6 @@
-import {DiffDOM} from "diff-dom";
+import {DiffDOM} from 'diff-dom';
 
-function component() {
+export function component() {
     const element = document.createElement('div');
     var dd = new DiffDOM();
   
@@ -10,10 +10,7 @@ function component() {
   }
   
   document.body.appendChild(component());
-  
-chrome.runtime.sendMessage({
-    greeting: "hello"
-},
-function (response) {
-    console.log(response.farewell)
-});
+
+export function testHelloWorld() {
+    console.log("Hello World from diff.js")
+}
