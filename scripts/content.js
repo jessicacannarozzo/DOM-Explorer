@@ -23,12 +23,15 @@
 
 // import {DiffDOM} from 'diff-dom';
 
-chrome.runtime.sendMessage({
+try {
+    chrome.runtime.sendMessage({
         currentDOM: createHTMLString()
     },
-    function (response) {
-        console.log(response.farewell)
-});
+    function (response) {});
+} catch(e) {
+    console.log("Something went wrong: " + e);
+}
+
 
 function createHTMLString() {
     return document.body.outerHTML;
