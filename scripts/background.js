@@ -21,28 +21,35 @@ chrome.runtime.onInstalled.addListener(() => {
 
 //receive DOM from content.js
 //store as url: {currentDOM, prevDOM}
-//first have to query for url in storage to see if there is already a currentDOM
 //TODO: what to respond back with?
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         if (sender.tab) {
-            chrome.storage.local.get([sender.tab.url], function(urlDOM) {
-                console.log("Value is currently: " + urlDOM.key)
-                //if undefined, store new DOM at currentDOM
-                if (urlDOM.key === undefined) {
-                    var url = sender.tab.url;
-                    console.log(url);
-                    chrome.storage.local.set({
-                        url: {currentDOM: request.currentDOM}
-                    }, function() {
-                        console.log("Initialized new storage object.");
-                    })
-                } else { //if not undefined, move currentDOM to prevDOM and set new DOM to currentDOM
+            console.log(sender.tab.url);
+            var url = String(sender.tab.url);
+            var obj = {};
+            obj[url] = String(request.DOM);
 
-                }
-            });
+            chrome.storage.local.set(obj);
+
+            // chrome.storage.local.get(url, function(data){
+            //     console.log(data); 
+            // })
         }
+
         sendResponse({
             farewell: "goodbye"
         });
+});
+
+chrome.storage.onChanged.addListener(function(changes, namespace) {
+    for (var key in changes) {
+        var storageChange = changes[key];
+        console.log('Storage key "%s" in namespace "%s" changed. ' +
+                    'Old value was "%s", new value is "%s".',
+                    key,
+                    namespace,
+                    storageChange.oldValue,
+                    storageChange.newValue);
+    }
 });

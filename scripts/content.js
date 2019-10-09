@@ -25,7 +25,7 @@
 
 try {
     chrome.runtime.sendMessage({
-        currentDOM: createHTMLString()
+        DOM: createHTMLString()
     },
     function (response) {});
 } catch(e) {
