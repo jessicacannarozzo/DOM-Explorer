@@ -5,6 +5,9 @@
  * An effective background script is only loaded when it is needed and unloaded when it goes idle.
  */
 
+ oldValue = {};
+ newValue = {};
+
 chrome.runtime.onInstalled.addListener(() => {
     var rule = {
         conditions: [
@@ -25,18 +28,17 @@ chrome.runtime.onInstalled.addListener(() => {
 //TODO: what to respond back with? => old and new DOM
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
-        var oldValue;
         if (sender.tab) {
             console.log(sender.tab.url);
             var url = String(sender.tab.url);
-            var newValue = {};
+            newValue = {};
             newValue[url] = {};
             newValue[url].DOM = String(request.DOM);
 
             chrome.storage.local.get(url, function(result) {
                 oldValue = result;
-                console.log("old value: " + JSON.stringify(oldValue));
-                console.log("new value: " + JSON.stringify(newValue));
+                // console.log("old value: " + JSON.stringify(oldValue));
+                // console.log("new value: " + JSON.stringify(newValue));
                 chrome.storage.local.set(newValue);
             })
         }
@@ -45,9 +47,16 @@ chrome.runtime.onMessage.addListener(
         //     console.log(result);
         // })
 
+        console.log("old valueeeee: " + JSON.stringify(this.oldValue));
+        console.log("new valueeeeeee: " + JSON.stringify(this.newValue));
         sendResponse({
-            farewell: "goodbye"
+            oldValue: this.oldValue,
+            newValue: this.newValue
         });
+
+        // sendResponse({
+        //     farewell: "goodbye"
+        // });
 });
 
 // chrome.storage.onChanged.addListener(function(changes, namespace) {
