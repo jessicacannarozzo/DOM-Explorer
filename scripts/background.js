@@ -20,36 +20,44 @@ chrome.runtime.onInstalled.addListener(() => {
 });
 
 //receive DOM from content.js
+//save old value
 //store as url: {currentDOM, prevDOM}
-//TODO: what to respond back with?
+//TODO: what to respond back with? => old and new DOM
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
+        var oldValue;
         if (sender.tab) {
             console.log(sender.tab.url);
             var url = String(sender.tab.url);
-            var obj = {};
-            obj[url] = String(request.DOM);
+            var newValue = {};
+            newValue[url] = {};
+            newValue[url].DOM = String(request.DOM);
 
-            chrome.storage.local.set(obj);
-
-            // chrome.storage.local.get(url, function(data){
-            //     console.log(data); 
-            // })
+            chrome.storage.local.get(url, function(result) {
+                oldValue = result;
+                console.log("old value: " + JSON.stringify(oldValue));
+                console.log("new value: " + JSON.stringify(newValue));
+                chrome.storage.local.set(newValue);
+            })
         }
+
+        // chrome.storage.local.get(url, function(result) {
+        //     console.log(result);
+        // })
 
         sendResponse({
             farewell: "goodbye"
         });
 });
 
-chrome.storage.onChanged.addListener(function(changes, namespace) {
-    for (var key in changes) {
-        var storageChange = changes[key];
-        console.log('Storage key "%s" in namespace "%s" changed. ' +
-                    'Old value was "%s", new value is "%s".',
-                    key,
-                    namespace,
-                    storageChange.oldValue,
-                    storageChange.newValue);
-    }
-});
+// chrome.storage.onChanged.addListener(function(changes, namespace) {
+//     for (var key in changes) {
+//         var storageChange = changes[key];
+//         console.log('Storage key "%s" in namespace "%s" changed. ' +
+//                     'Old value was "%s", new value is "%s".',
+//                     key,
+//                     namespace,
+//                     storageChange.oldValue,
+//                     storageChange.newValue);
+//     }
+// });
