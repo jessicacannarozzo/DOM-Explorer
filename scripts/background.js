@@ -24,8 +24,8 @@ chrome.runtime.onInstalled.addListener(() => {
 
 //receive DOM from content.js
 //save old value
-//store as url: {currentDOM, prevDOM}
-//TODO: what to respond back with? => old and new DOM
+//store as: {url: DOM String}
+//response: old and new DOM
 chrome.runtime.onMessage.addListener(
     function (request, sender, sendResponse) {
         if (sender.tab) {
@@ -37,15 +37,9 @@ chrome.runtime.onMessage.addListener(
 
             chrome.storage.local.get(url, function(result) {
                 oldValue = result;
-                // console.log("old value: " + JSON.stringify(oldValue));
-                // console.log("new value: " + JSON.stringify(newValue));
                 chrome.storage.local.set(newValue);
             })
         }
-
-        // chrome.storage.local.get(url, function(result) {
-        //     console.log(result);
-        // })
 
         console.log("old valueeeee: " + JSON.stringify(this.oldValue));
         console.log("new valueeeeeee: " + JSON.stringify(this.newValue));
@@ -53,20 +47,4 @@ chrome.runtime.onMessage.addListener(
             oldValue: this.oldValue,
             newValue: this.newValue
         });
-
-        // sendResponse({
-        //     farewell: "goodbye"
-        // });
 });
-
-// chrome.storage.onChanged.addListener(function(changes, namespace) {
-//     for (var key in changes) {
-//         var storageChange = changes[key];
-//         console.log('Storage key "%s" in namespace "%s" changed. ' +
-//                     'Old value was "%s", new value is "%s".',
-//                     key,
-//                     namespace,
-//                     storageChange.oldValue,
-//                     storageChange.newValue);
-//     }
-// });
