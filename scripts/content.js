@@ -20,9 +20,6 @@
 //         characterDataOldValue: true
 //     });
 // });
-
-// import {DiffDOM} from 'diff-dom';
-
 try {
     chrome.runtime.sendMessage({
         DOM: createHTMLString()

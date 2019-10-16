@@ -9,6 +9,9 @@
 
         <!-- CSS override -->
         <link rel="stylesheet" href="../css/style.css">
+
+        <!-- <link rel="manifest" href="<%= htmlWebpackPlugin.options.manifest %>" /> -->
+        <script src="../dist/webpack-bundle.js"></script>
     </head>
 
     <body>
@@ -21,6 +24,9 @@
             <script type="module" src="../dist/webpack-bundle.js"></script>
             <script src="../scripts/popup.js"></script>
             <p id="DOMChange"> No changes yet. </p>
+            <script>
+            var dd = new DiffDOM();
+            </script>
         </div>
     </body>
 </html>

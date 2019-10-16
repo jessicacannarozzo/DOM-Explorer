@@ -2,6 +2,7 @@
   "name": "DOM-Explorer",
   "version": "1.0.0",
   "description": "Takes a diff of the DOM of visited pages and depicts the perctange in which the page has changed.",
+  "main": "./dist/webpack-bundle.js",
   "private": true,
   "dependencies": {
     "agentkeepalive": "^3.5.2",
@@ -42,12 +43,16 @@
     "strip-json-comments": "^2.0.1"
   },
   "devDependencies": {
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.41.0",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack",
+    "start:dev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
