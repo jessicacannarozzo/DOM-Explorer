@@ -36,5 +36,6 @@ try {
 
 
 function createHTMLString() {
+    if (!document.body) { return ''; }
     return document.body.outerHTML;
 }

@@ -5,8 +5,8 @@
  * An effective background script is only loaded when it is needed and unloaded when it goes idle.
  */
 
- oldValue = {};
- newValue = {};
+var oldValue = {};
+var newValue = {};
 
 chrome.runtime.onInstalled.addListener(() => {
     var rule = {
@@ -27,24 +27,25 @@ chrome.runtime.onInstalled.addListener(() => {
 //store as: {url: DOM String}
 //response: old and new DOM
 chrome.runtime.onMessage.addListener(
-    function (request, sender, sendResponse) {
-        if (sender.tab) {
-            console.log(sender.tab.url);
-            var url = String(sender.tab.url);
-            newValue = {};
-            newValue[url] = {};
-            newValue[url].DOM = String(request.DOM);
-
-            chrome.storage.local.get(url, function(result) {
-                oldValue = result;
-                chrome.storage.local.set(newValue);
-            })
+    (request, sender, sendResponse) => {
+        if (!sender || !sender.tab) {
+            return sendResponse(null);
         }
+        console.log(sender.tab.url);
+        var url = sender.tab.url;
+        newValue = {};
+        newValue[url] = {};
+        newValue[url].DOM = request.DOM + '';
 
-        console.log("old valueeeee: " + JSON.stringify(this.oldValue));
-        console.log("new valueeeeeee: " + JSON.stringify(this.newValue));
-        sendResponse({
-            oldValue: this.oldValue,
-            newValue: this.newValue
-        });
-});
+        chrome.storage.local.get(url, result => {
+            oldValue = result;
+            chrome.storage.local.set(newValue); // this accepts a callback
+            console.log("old: " + JSON.stringify(oldValue, null, 2));
+            console.log("new: " + JSON.stringify(newValue, null, 2));
+            sendResponse({
+                oldValue: oldValue,
+                newValue: newValue
+            });
+        })
+        return true;
+    });
