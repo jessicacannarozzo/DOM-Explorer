@@ -8,8 +8,6 @@ export function component() {
   
     return element;
   }
-  
-  document.body.appendChild(component());
 
 export function testHelloWorld() {
     console.log("Hello World from diff.js")

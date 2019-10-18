@@ -16,7 +16,7 @@ recordDOM.addEventListener('click', element => {
             console.log(result)
         });
         chrome.tabs.executeScript({
-            file: '/scripts/content.js'
+            file: '/scripts/webpack-bundle.js'
         });
     });
 });
