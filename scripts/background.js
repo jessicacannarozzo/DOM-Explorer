@@ -31,6 +31,7 @@ chrome.runtime.onMessage.addListener(
         if (!sender || !sender.tab) {
             return sendResponse(null);
         }
+        //check if sender is content script?
         console.log(sender.tab.url);
         var url = sender.tab.url;
         newValue = {};
@@ -43,8 +44,8 @@ chrome.runtime.onMessage.addListener(
             console.log("old: " + JSON.stringify(oldValue, null, 2));
             console.log("new: " + JSON.stringify(newValue, null, 2));
             sendResponse({
-                oldValue: oldValue,
-                newValue: newValue
+                oldValue: oldValue[url].DOM,
+                newValue: newValue[url].DOM
             });
         })
         return true;
