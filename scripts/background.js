@@ -31,22 +31,24 @@ chrome.runtime.onMessage.addListener(
         if (!sender || !sender.tab) {
             return sendResponse(null);
         }
-        //check if sender is content script?
-        console.log(sender.tab.url);
-        var url = sender.tab.url;
-        newValue = {};
-        newValue[url] = {};
-        newValue[url].DOM = request.DOM + '';
 
-        chrome.storage.local.get(url, result => {
-            oldValue = result;
-            chrome.storage.local.set(newValue); // this accepts a callback
-            console.log("old: " + JSON.stringify(oldValue, null, 2));
-            console.log("new: " + JSON.stringify(newValue, null, 2));
-            sendResponse({
-                oldValue: oldValue[url].DOM,
-                newValue: newValue[url].DOM
-            });
-        })
-        return true;
+        if (request.DOM != undefined) {
+            console.log(sender.tab.url);
+            var url = sender.tab.url;
+            newValue = {};
+            newValue[url] = {};
+            newValue[url].DOM = request.DOM + '';
+    
+            chrome.storage.local.get(url, result => {
+                oldValue = result;
+                chrome.storage.local.set(newValue); // this accepts a callback
+                console.log("old: " + JSON.stringify(oldValue, null, 2));
+                console.log("new: " + JSON.stringify(newValue, null, 2));
+                sendResponse({
+                    oldValue: oldValue[url].DOM,
+                    newValue: newValue[url].DOM
+                });
+            })
+            return true;
+        }        
     });

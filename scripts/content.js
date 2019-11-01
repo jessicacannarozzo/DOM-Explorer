@@ -20,6 +20,19 @@ function makeDIFF(response) {
 
     diff = dd.diff(JSON.stringify(response.oldValue), JSON.stringify(response.newValue));
     console.log(diff);
+
+    try {
+        chrome.runtime.sendMessage({
+            DIFF: diff
+        },
+        function (response) {
+            console.log("Response: ", response);
+        });
+    } catch(e) {
+        console.log("Something went wrong while trying to send the DOM diff: " + e);
+    }
+
+    return diff;
 }
 
 function createHTMLString() {

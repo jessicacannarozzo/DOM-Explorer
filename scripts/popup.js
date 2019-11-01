@@ -1,10 +1,5 @@
 let recordDOM = document.getElementById('recordDOM');
 
-chrome.storage.sync.get('color', function (data) {
-    recordDOM.style.backgroundColor = data.color;
-    recordDOM.setAttribute('value', data.color);
-});
-
 recordDOM.addEventListener('click', element => {
     let color = element.target.value;
     chrome.tabs.query({
@@ -20,3 +15,24 @@ recordDOM.addEventListener('click', element => {
         });
     });
 });
+
+chrome.runtime.onMessage.addListener(
+    (request, sender, sendResponse) => {
+        if (!sender || !sender.tab) {
+            return sendResponse(null);
+        }
+
+        if (request.DIFF != undefined) {
+            console.log(JSON.stringify(request));
+            sendResponse({
+                success: true
+            });
+            return true;
+        }        
+
+    });
+
+// var x = document.createElement("P");                        // Create a <p> element
+// var t = document.createTextNode("This is a paragraph.");    // Create a text node
+// x.appendChild(t);                                           // Append the text to <p>
+// document.body.appendChild(x);                               // Append <p> to <body>
