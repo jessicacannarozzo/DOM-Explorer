@@ -22,8 +22,9 @@ chrome.runtime.onMessage.addListener(
             return sendResponse(null);
         }
 
+        console.log(JSON.stringify(request));
+
         if (request.DIFF != undefined) {
-            console.log(JSON.stringify(request));
             sendResponse({
                 success: true
             });
