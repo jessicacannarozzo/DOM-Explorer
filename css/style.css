@@ -9,6 +9,10 @@ body {
     padding: 1rem 1rem 1rem 1rem;
 }
 
+.actionText {
+    background-color: red;
+}
+
 #recordDOMButton {
     align-content: flex-start;
 }

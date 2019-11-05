@@ -37,19 +37,29 @@ chrome.runtime.onMessage.addListener(
 
 // update popup.html after diff has been received
 function updatePopup(diff) {
-    if (diff != "") {
+    var totalDiff = {};
+    var keys = [];
+    var output = "";
 
+    if (diff != "") {
+        //format diff obj for display purposes
         for (key in diff) {
-            console.log(diff[key])
+            // console.log(diff[key])
+            if (totalDiff[diff[key].action] != undefined) { //if action is in obj
+                totalDiff[diff[key].action] += ", " + diff[key].name;
+            } else {
+                totalDiff[JSON.stringify(diff[key].action)] = diff[key].name;
+                keys.push(JSON.stringify(diff[key].action));
+            }
         }
 
-        document.getElementById("diff").innerHTML = JSON.stringify(diff[0]);
+        for (index in keys) {
+            output += keys[index] + ": " + JSON.stringify(totalDiff[keys[index]]) + "\n";
+        }
+
+        //stylize and print inside popup.html
+        document.getElementById("diff").innerHTML = output;
     } else {
         document.getElementById("diff").innerHTML = "No changes yet."
     }
 }
-
-// var x = document.createElement("P");                        // Create a <p> element
-// var t = document.createTextNode("This is a paragraph.");    // Create a text node
-// x.appendChild(t);                                           // Append the text to <p>
-// document.body.appendChild(x);                               // Append <p> to <body>
