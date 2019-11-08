@@ -8,23 +8,37 @@ try {
     },
     function (response) {
         diff = {};
+        var diffPercent = 0;
         // console.log("Response: ", response);
         diff = makeDIFF(response, function(diff) {
             //send message to popup.js
-            try {
-                chrome.runtime.sendMessage({
-                    DIFF: diff
-                },
-                function (response) {
-                    // console.log("Response: ", response);
-                });
-            } catch(e) {
-                console.log("Something went wrong while trying to send the DOM diff: " + e);
-            }
+            diffPercent = calculateDiffPercent(response, function(diffPercent) {
+                try {
+                    chrome.runtime.sendMessage({
+                        DIFF: diff,
+                        percent: diffPercent
+                    },
+                    function (response) {
+                        // console.log("Response: ", response);
+                    });
+                } catch(e) {
+                    console.log("Something went wrong while trying to send the DOM diff: " + e);
+                }
+            });
         });
     });
 } catch(e) {
     console.log("Something went wrong: " + e);
+}
+
+// calculate percentage of changes between old and new DOMs
+// formula borrowed from https://www.calculator.net/percent-calculator.html
+function calculateDiffPercent(response, cb) {
+    var oldValue = JSON.stringify(response.oldValue);
+    var newValue = JSON.stringify(response.newValue);
+    var diffPercent = (Math.abs(oldValue.length - newValue.length) / ((oldValue.length + newValue.length)/2)) * 100;
+    console.log(diffPercent);
+    cb(diffPercent);
 }
 
 // uses DiffDOM to make a diff of two HTML strings

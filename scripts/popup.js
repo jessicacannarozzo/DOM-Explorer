@@ -29,6 +29,7 @@ chrome.runtime.onMessage.addListener(
             sendResponse({
                 success: true
             });
+            console.log(request.percent)
             updatePopup(request.DIFF);
             return true;
         }        
