@@ -44,7 +44,7 @@ function calculateDiffPercent(response, cb) {
 
 // uses DiffDOM to make a diff of two HTML strings
 function makeDIFF(response, cb) {
-    if (response.oldValue !== undefined && response.newValue !== undefined) {
+    if (response.oldValue != undefined && response.newValue != undefined) {
         var dd = new DiffDOM({
             valueDiffing: false // does not take into account user input
         });

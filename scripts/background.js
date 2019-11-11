@@ -45,7 +45,7 @@ chrome.runtime.onMessage.addListener(
                 console.log("old: " + JSON.stringify(oldValue, null, 2));
                 console.log("new: " + JSON.stringify(newValue, null, 2));
                 sendResponse({
-                    oldValue: oldValue[url].DOM,
+                    oldValue: Object.getOwnPropertyNames(oldValue).length === 0 ? "" : oldValue[url].DOM,
                     newValue: newValue[url].DOM
                 });
             })
