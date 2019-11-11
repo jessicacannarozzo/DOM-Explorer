@@ -30,6 +30,7 @@ body {
 /* The following css is from a guide on how to create JS animations */
 /* https://www.youtube.com/watch?v=qB_EEdcj6-U */
 .ring {
+    visibility: hidden;
     position: absolute;
     top: 10%;
     bottom: 10%;
@@ -65,6 +66,7 @@ body {
 
 /* https://www.youtube.com/watch?v=qB_EEdcj6-U */
 span {
+    visibility: inherit;
     display: block;
     position: absolute;
     top: calc(50% - 2px);

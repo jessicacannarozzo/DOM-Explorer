@@ -42,13 +42,16 @@ function updatePopup(request) {
     var keys = [];
     var output = "";
 
+    var div = document.getElementById("ring");
+
+    div.style.visibility = "visible";
+
     if (diff != "" && diff != undefined) {
         if (request.percent > 0 && request.percent < 1) {
             document.getElementById("diff").innerHTML = Number(parseFloat(Math.round(request.percent.toFixed(10) * 100) / 100).toFixed(2)) + "%";
         } else if (request.percent > 0 || request.percent === 0) {
             document.getElementById("diff").innerHTML = Number(request.percent.toFixed(2)) + "%";
         }
-        // document.getElementById("diff").innerHTML = request.percent;
     } else {
         document.getElementById("diff").innerHTML = "No changes yet."
     }
