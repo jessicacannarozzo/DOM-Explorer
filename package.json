@@ -7,9 +7,11 @@
   "dependencies": {
     "agentkeepalive": "^3.5.2",
     "browserify": "^16.5.0",
+    "chart.js": "^2.9.2",
     "diff-dom": "^4.1.6",
     "encoding": "^0.1.12",
     "find-up": "^4.1.0",
+    "highcharts": "^7.2.1",
     "humanize-ms": "^1.2.1",
     "iconv-lite": "^0.4.24",
     "locate-path": "^5.0.0",

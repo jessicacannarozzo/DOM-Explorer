@@ -36,6 +36,7 @@ try {
 function calculateDiffPercent(response, cb) {
     var oldValue = JSON.stringify(response.oldValue);
     var newValue = JSON.stringify(response.newValue);
+    
     var diffPercent = (Math.abs(oldValue.length - newValue.length) / ((oldValue.length + newValue.length)/2)) * 100;
     console.log(diffPercent);
     cb(diffPercent);
