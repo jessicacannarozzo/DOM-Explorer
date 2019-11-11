@@ -19,12 +19,15 @@ body {
 
 #diff {
     text-align: center;
+    position: relative;
+    top: -38px;
     padding-top: 10%;
     padding-left: 20%;
     padding-right: 20%;
     font-size: x-large;
 }
 
+/* The following css is from a guide on how to create JS animations */
 /* https://www.youtube.com/watch?v=qB_EEdcj6-U */
 .ring {
     position: absolute;
