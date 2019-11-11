@@ -42,29 +42,11 @@ function updatePopup(request) {
     var keys = [];
     var output = "";
 
-    if (diff != "") {
-        //format diff obj for display purposes
-        // for (key in request.diff) {
-        //     // console.log(request.diff[key])
-        //     if (totalDiff[request.diff[key].action] != undefined) { //if action is in obj
-        //         totalDiff[request.diff[key].action] += ", " + request.diff[key].name;
-        //     } else {
-        //         totalDiff[JSON.stringify(request.diff[key].action)] = request.diff[key].name;
-        //         keys.push(JSON.stringify(request.diff[key].action));
-        //     }
-        // }
-
-        // for (index in keys) {
-        //     output += keys[index] + ": " + JSON.stringify(totalDiff[keys[index]]) + "\n";
-        // }
-
-        //stylize and print inside popup.html
-        // document.getElementById("diff").innerHTML = output;
-
+    if (diff != "" && diff != undefined) {
         if (request.percent > 0 && request.percent < 1) {
-            document.getElementById("diff").innerHTML = Number(request.percent.toFixed(10)) + "%";
+            document.getElementById("diff").innerHTML = Number(parseFloat(Math.round(request.percent.toFixed(10) * 100) / 100).toFixed(2)) + "%";
         } else if (request.percent > 0 || request.percent === 0) {
-            document.getElementById("diff").innerHTML = Number(request.percent.toFixed(0)) + "%";
+            document.getElementById("diff").innerHTML = Number(request.percent.toFixed(2)) + "%";
         }
         // document.getElementById("diff").innerHTML = request.percent;
     } else {
