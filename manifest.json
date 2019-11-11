@@ -1,7 +1,7 @@
 {
     "name": "DOM Explorer",
     "version": "1.0",
-    "description": "Build an Extension!",
+    "description": "Compares a website's old and new Domain Object Model.",
     "permissions": ["activeTab","declarativeContent", "storage", "bookmarks"], 
     "background": {
         "scripts": ["/scripts/background.js"],

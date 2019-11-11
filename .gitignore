@@ -5,4 +5,4 @@ notes.txt
 node_modules/
 
 # Webpack
-dist/webpack-bundle.js
+*/webpack-bundle.js
