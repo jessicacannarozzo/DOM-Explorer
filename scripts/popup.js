@@ -16,6 +16,16 @@ recordDOM.addEventListener('click', element => {
     });
 });
 
+// dropdown listener
+// https://materializecss.com/collapsible.html
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.collapsible');
+    var options = {
+        accordion: true
+    };
+    var instances = M.Collapsible.init(elems, options);
+  });
+
 // on message received, do something iff request.DIFF exists (i.e. content.js is sending a diff)
 chrome.runtime.onMessage.addListener(
     (request, sender, sendResponse) => {
@@ -52,6 +62,12 @@ function updatePopup(request) {
         } else if (request.percent > 0 || request.percent === 0) {
             document.getElementById("diff").innerHTML = Number(request.percent.toFixed(2)) + "%";
         }
+
+        var elem = document.querySelector('.collapsible.expandable');
+        var instance = M.Collapsible.init(elem, {
+            accordion: true
+        });
+ 
     } else {
         document.getElementById("diff").innerHTML = "No changes yet."
     }

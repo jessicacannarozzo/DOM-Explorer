@@ -28,14 +28,46 @@
         id="recordDOM"
         class="btn-floating btn-small waves-effect waves-light teal lighten-1"
         href="#"
-        ><i class="material-icons">compare</i></a>
+        ><i class="material-icons">compare</i></a
+      >
 
       <div id="ring" class="ring">
         <span id="loader-span"></span>
-        <p id="diff"> Test </p>
+        <p id="diff">Test</p>
       </div>
 
       <script src="../scripts/popup.js"></script>
+	</div>
+	
+	<!-- DOM change details -->
+	<!-- https://materializecss.com/collapsible.html -->
+    <div class="details">
+      <ul class="collapsible">
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">add</i><span id="collapsible-text">Additions</span>
+          </div>
+          <div class="collapsible-body">
+            <span>Lorem ipsum dolor sit amet.</span>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">remove</i><span id="collapsible-text">Removals</span>
+          </div>
+          <div class="collapsible-body">
+            <span>Lorem ipsum dolor sit amet.</span>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">change_history</i><span id="collapsible-text">Modifications</span>
+          </div>
+          <div class="collapsible-body">
+            <span>Lorem ipsum dolor sit amet.</span>
+          </div>
+        </li>
+      </ul>
     </div>
   </body>
 </html>

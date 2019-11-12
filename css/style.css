@@ -1,11 +1,12 @@
 body {
     display: inline-block;
     width: 250px;
-    height: 200px;
+    height: 350px;
 }
 
 .content {
     /* text-align: center; */
+    height: 215px;
     padding: 1rem 1rem 1rem 1rem;
 }
 
@@ -25,6 +26,16 @@ body {
     padding-left: 20%;
     padding-right: 20%;
     font-size: x-large;
+}
+
+.collapsible {
+    height: 100px;
+}
+
+span#collapsible-text {
+    font-size: 12px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: relative;
 }
 
 /* The following css is from a guide on how to create JS animations */
@@ -65,7 +76,7 @@ body {
 }
 
 /* https://www.youtube.com/watch?v=qB_EEdcj6-U */
-span {
+span#loader-span {
     visibility: inherit;
     display: block;
     position: absolute;
@@ -79,7 +90,7 @@ span {
 }
 
 /* https://www.youtube.com/watch?v=qB_EEdcj6-U */
-span:before {
+span#loader-span:before {
     content: '';
     position: absolute;
     width: 16px;
