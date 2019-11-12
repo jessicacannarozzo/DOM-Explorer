@@ -82,11 +82,9 @@ function updatePopup(request) {
             var action = JSON.stringify(request.DIFF[index].action);
             if (action.includes("add")) {
                 var name = getName(request.DIFF[index]);
-                // JSON.stringify(request.DIFF[index].name) === undefined ? "None" : JSON.stringify(request.DIFF[index].name);
                 var attributes = getAttributes(request.DIFF[index]);
-
-                console.log(attributes);
-                var output = "Name: " + name + "\nAttributes: " + (attributes.length === 0 ? "None" : JSON.stringify(attributes)) + "\n"
+                var output = "<b> Name</b>: " + name + "<br /> <b>Attributes</b>: " + attributes + "<br />";
+                console.log(output);
                 document.getElementById("add-text").innerHTML = output;
             } else if (action.includes("remove")) {
 
@@ -103,8 +101,12 @@ function updatePopup(request) {
 function getName(diffObj) {
     if (diffObj.name !== undefined) {
         return JSON.stringify(diffObj.name);
-    } else if (diffObj.element.nodeName !== undefined) {
-        return JSON.stringify(diffObj.element.nodeName);
+    } else if (diffObj.element !== undefined) {
+        if (diffObj.element.nodeName !== undefined) {
+            return JSON.stringify(diffObj.element.nodeName);
+        } else {
+            return "None";
+        }
     } else {
         return "None";
     }
@@ -114,7 +116,7 @@ function getName(diffObj) {
 function getAttributes(diffObj) {
     if (diffObj.element) {
         if (diffObj.element.childNodes) {
-            return diffObj.element.childNodes
+            return JSON.stringify(diffObj.element.childNodes);
         } else {
             return "None";
         }
