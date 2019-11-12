@@ -83,9 +83,15 @@ function updatePopup(request) {
             if (action.includes("add")) {
                 var name = getName(request.DIFF[index]);
                 var attributes = getAttributes(request.DIFF[index]);
-                var output = "<b> Name</b>: " + name + "<br /> <b>Attributes</b>: " + attributes + "<br />";
-                console.log(output);
-                document.getElementById("add-text").innerHTML = output;
+
+                var output = "<b> Name</b>: " + name + "<br/> <b>Value</b>: " + attributes + "<br/>";
+
+                if (index > 0) {
+                    var addText = document.getElementById("add-text").innerHTML;
+                    document.getElementById("add-text").innerHTML = addText + "<br/>" + output;
+                } else {
+                    document.getElementById("add-text").innerHTML = output;
+                }
             } else if (action.includes("remove")) {
 
             } else {
@@ -113,6 +119,7 @@ function getName(diffObj) {
 }
 
 // return attributes of a diff if applicable
+// if no attributes, return value
 function getAttributes(diffObj) {
     if (diffObj.element) {
         if (diffObj.element.childNodes) {
@@ -120,7 +127,12 @@ function getAttributes(diffObj) {
         } else {
             return "None";
         }
-    } else {
+    } else if (diffObj.value) {
+        if (!(diffObj.value).replace(/\s/g, '').length) {
+            return "Whitespace";
+        } else return JSON.stringify(diffObj.value);
+    }
+     else {
         return "None";
     }
 }
