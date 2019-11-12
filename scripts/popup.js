@@ -80,22 +80,25 @@ function updatePopup(request) {
         for (index in request.DIFF) {
             console.log(request.DIFF[index]);
             var action = JSON.stringify(request.DIFF[index].action);
+            var htmlElement = "";
             if (action.includes("add")) {
-                var name = getName(request.DIFF[index]);
-                var attributes = getAttributes(request.DIFF[index]);
-
-                var output = "<b> Name</b>: " + name + "<br/> <b>Value</b>: " + attributes + "<br/>";
-
-                if (index > 0) {
-                    var addText = document.getElementById("add-text").innerHTML;
-                    document.getElementById("add-text").innerHTML = addText + "<br/>" + output;
-                } else {
-                    document.getElementById("add-text").innerHTML = output;
-                }
+                htmlElement = "add-text";
             } else if (action.includes("remove")) {
-
+                htmlElement = "remove-text";
             } else {
-                
+                htmlElement = "modify-text";                
+            }
+            
+            var name = getName(request.DIFF[index]);
+            var attributes = getAttributes(request.DIFF[index]);
+
+            var output = "<b> Name</b>: " + name + "<br/> <b>Value</b>: " + attributes + "<br/>";
+
+            if (index > 0) {
+                var addText = document.getElementById(htmlElement).innerHTML;
+                document.getElementById(htmlElement).innerHTML = addText + "<br/>" + output;
+            } else {
+                document.getElementById(htmlElement).innerHTML = output;
             }
         }
     } else {
