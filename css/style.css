@@ -32,7 +32,7 @@ body {
     height: 100px;
 }
 
-span#collapsible-text {
+span.collapsible-text {
     font-size: 12px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     position: relative;

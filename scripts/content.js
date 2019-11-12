@@ -52,6 +52,7 @@ function makeDIFF(response, cb) {
         var diff = {};
         console.log("Response: ", response);
 
+        // replace whitespace and newline before diff
         var oldValue = JSON.stringify(response.oldValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
         var newValue = JSON.stringify(response.newValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
     

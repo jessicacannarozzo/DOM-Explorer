@@ -33,7 +33,7 @@ chrome.runtime.onMessage.addListener(
             return sendResponse(null);
         }
 
-        console.log(JSON.stringify(request));
+        // console.log(JSON.stringify(request));
 
         if (request.DIFF != undefined) {
             sendResponse({
@@ -52,23 +52,73 @@ function updatePopup(request) {
     var keys = [];
     var output = "";
 
+    //clean collapsible accordion
+    document.getElementById("add-text").innerHTML = "";
+    document.getElementById("remove-text").innerHTML = "";
+    document.getElementById("modify-text").innerHTML = "";
+
     var div = document.getElementById("ring");
 
     div.style.visibility = "visible";
 
     if (diff != "" && diff != undefined) {
+        // update percentage
         if (request.percent > 0 && request.percent < 1) {
             document.getElementById("diff").innerHTML = Number(parseFloat(Math.round(request.percent.toFixed(10) * 100) / 100).toFixed(2)) + "%";
         } else if (request.percent > 0 || request.percent === 0) {
             document.getElementById("diff").innerHTML = Number(request.percent.toFixed(2)) + "%";
         }
 
+        // update collapsible accordion
         var elem = document.querySelector('.collapsible.expandable');
+        // document.getElementById("add-text").innerHTML = "hello"
         var instance = M.Collapsible.init(elem, {
             accordion: true
         });
- 
+
+        // console.log(request.DIFF[0].action);
+        for (index in request.DIFF) {
+            console.log(request.DIFF[index]);
+            var action = JSON.stringify(request.DIFF[index].action);
+            if (action.includes("add")) {
+                var name = getName(request.DIFF[index]);
+                // JSON.stringify(request.DIFF[index].name) === undefined ? "None" : JSON.stringify(request.DIFF[index].name);
+                var attributes = getAttributes(request.DIFF[index]);
+
+                console.log(attributes);
+                var output = "Name: " + name + "\nAttributes: " + (attributes.length === 0 ? "None" : JSON.stringify(attributes)) + "\n"
+                document.getElementById("add-text").innerHTML = output;
+            } else if (action.includes("remove")) {
+
+            } else {
+                
+            }
+        }
     } else {
         document.getElementById("diff").innerHTML = "No changes yet."
+    }
+}
+
+// return name or nodename of a diff
+function getName(diffObj) {
+    if (diffObj.name !== undefined) {
+        return JSON.stringify(diffObj.name);
+    } else if (diffObj.element.nodeName !== undefined) {
+        return JSON.stringify(diffObj.element.nodeName);
+    } else {
+        return "None";
+    }
+}
+
+// return attributes of a diff if applicable
+function getAttributes(diffObj) {
+    if (diffObj.element) {
+        if (diffObj.element.childNodes) {
+            return diffObj.element.childNodes
+        } else {
+            return "None";
+        }
+    } else {
+        return "None";
     }
 }
