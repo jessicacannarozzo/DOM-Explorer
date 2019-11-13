@@ -1,4 +1,4 @@
-import {DiffDOM, nodeToObj} from 'diff-dom';
+import {DiffDOM, stringToObj} from 'diff-dom';
 
 var diff = {};
 
@@ -56,7 +56,7 @@ function makeDIFF(response, cb) {
         var oldValue = JSON.stringify(response.oldValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
         var newValue = JSON.stringify(response.newValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
     
-        diff = dd.diff(oldValue, newValue);
+        diff = dd.diff(stringToObj(oldValue), stringToObj(newValue));
         console.log(diff);
     
         cb(diff);
