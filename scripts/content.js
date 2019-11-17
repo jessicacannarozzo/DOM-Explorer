@@ -1,4 +1,4 @@
-import {DiffDOM, stringToObj} from 'diff-dom';
+import { html2json } from 'html2json';
 
 var diff = {};
 
@@ -44,19 +44,21 @@ function calculateDiffPercent(response, cb) {
 
 // uses DiffDOM to make a diff of two HTML strings
 function makeDIFF(response, cb) {
-    if (response.oldValue != undefined && response.newValue != undefined) {
-        var dd = new DiffDOM({
-            valueDiffing: false // does not take into account user input
-        });
-    
+    if (response.oldValue != undefined && response.newValue != undefined) { 
         var diff = {};
         console.log("Response: ", response);
 
         // replace whitespace and newline before diff
-        var oldValue = JSON.stringify(response.oldValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
-        var newValue = JSON.stringify(response.newValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
-    
-        diff = dd.diff(stringToObj(oldValue), stringToObj(newValue));
+        // var oldValue = JSON.stringify(response.oldValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
+        // var newValue = JSON.stringify(response.newValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
+        console.log(response.oldValue);
+        let oldValue = html2json(response.oldValue); 
+        let newValue = html2json(response.newValue); 
+
+        console.log(oldValue);
+        console.log(newValue);
+
+        // diff = 
         console.log(diff);
     
         cb(diff);
