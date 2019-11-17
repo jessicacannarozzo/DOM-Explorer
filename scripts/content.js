@@ -64,6 +64,16 @@ function makeDIFF(response, cb) {
 }
 
 function createHTMLString() {
-    if (!document.body) { return ''; }
-    return document.body.outerHTML;
+    console.log(document.getElementsByTagName('center'));
+    if (!document.getElementsByTagName('center')) { return ''; }
+
+    let centerHTML = document.getElementsByTagName('center');
+    let outputString = "";
+
+    var i;
+    for (i = 0; i < centerHTML.length; i++) {
+        outputString = outputString + centerHTML[i].innerHTML;
+    }
+    console.log(outputString);
+    return outputString
 }

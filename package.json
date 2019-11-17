@@ -12,6 +12,7 @@
     "encoding": "^0.1.12",
     "find-up": "^4.1.0",
     "highcharts": "^7.2.1",
+    "html2json": "^1.0.2",
     "humanize-ms": "^1.2.1",
     "iconv-lite": "^0.4.24",
     "locate-path": "^5.0.0",

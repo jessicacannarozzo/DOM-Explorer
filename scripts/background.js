@@ -19,8 +19,8 @@ chrome.runtime.onMessage.addListener(
         }
 
         if (request.DOM != undefined) {
-            console.log(sender.tab.url);
-            var url = sender.tab.url;
+            console.log(sender.tab.title);
+            var url = sender.tab.title;
             newValue = {};
             newValue[url] = {};
             newValue[url].DOM = request.DOM + '';
