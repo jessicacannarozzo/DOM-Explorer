@@ -8,20 +8,6 @@
 var oldValue = {};
 var newValue = {};
 
-chrome.runtime.onInstalled.addListener(() => {
-    var rule = {
-        conditions: [
-            new chrome.declarativeContent.PageStateMatcher({
-                isBookmarked: true
-            })
-        ],
-        actions: [new chrome.declarativeContent.ShowPageAction()]
-    };
-    chrome.declarativeContent.onPageChanged.removeRules(undefined, function () {
-        chrome.declarativeContent.onPageChanged.addRules([rule]);
-    });
-});
-
 //receive DOM from content.js
 //save old value
 //store as: {url: DOM String}

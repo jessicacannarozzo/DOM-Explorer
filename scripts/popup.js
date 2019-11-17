@@ -34,16 +34,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return sendResponse(null);
   }
 
-  // console.log(JSON.stringify(request));
-
-  if (request.DIFF != undefined) {
+  // request contains DIFF to send
+    if (request.DIFF != undefined) {
     sendResponse({
       success: true
     });
     console.log(request.percent);
     updatePopup(request);
     return true;
-  }
+  } 
 });
 
 // update popup.html after diff has been received
