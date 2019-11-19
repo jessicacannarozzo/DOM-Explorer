@@ -13,7 +13,7 @@ recordDOM.addEventListener("click", element => {
         console.log(result);
       });
       chrome.tabs.executeScript({
-        file: "/scripts/webpack-bundle.js"
+        file: "/scripts/content-bundle.js"
       });
     }
   );
@@ -35,7 +35,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 
   // request contains DIFF to send
-    if (request.DIFF != undefined) {
+    if (request.DIFF !== undefined) {
     sendResponse({
       success: true
     });
@@ -50,62 +50,34 @@ function updatePopup(request) {
   var output = "";
 
   //clean collapsible accordion
-  document.getElementById("add-text").innerHTML = "";
-  document.getElementById("remove-text").innerHTML = "";
   document.getElementById("modify-text").innerHTML = "";
 
   var div = document.getElementById("ring");
 
   div.style.visibility = "visible";
 
-  if (diff != "" && diff != undefined) {
-    // update percentage
-    if (request.percent > 0 && request.percent < 1) {
-      document.getElementById("diff").innerHTML =
-        Number(
-          parseFloat(
-            Math.round(request.percent.toFixed(10) * 100) / 100
-          ).toFixed(2)
-        ) + "%";
-    } else if (request.percent > 0 || request.percent === 0) {
-      document.getElementById("diff").innerHTML =
-        Number(request.percent.toFixed(2)) + "%";
-    }
-    let htmlElement = "";
-    let action;
-    for (index in request.DIFF) {
-      console.log(request.DIFF[index]);
-      action = request.DIFF[index].action;
-      htmlElement = "";
-      if (action.includes("add")) {
-        htmlElement = "add-text";
-      } else if (action.includes("remove")) {
-        htmlElement = "remove-text";
-      } else {
-        htmlElement = "modify-text";
-      }
+  let diff = request.DIFF;
 
-      var name = getName(request.DIFF[index]);
-      var attributes = getAttributes(request.DIFF[index]);
-
-      var output =
-        "<b> Name</b>: " + name + "<br/> <b>Value</b>: " + attributes + "<br/>";
-
-      if (name) {
-        //formatting purposes
-        if (index > 0) {
-          var addText = document.getElementById(htmlElement).innerHTML;
-          document.getElementById(htmlElement).innerHTML =
-            addText + "<br/>" + output;
-        } else {
-          document.getElementById(htmlElement).innerHTML = output;
-        }
-      } else {
-        console.log(request.DIFF[index]);
-      }
-    }
+  // update percentage
+  if (request.percent > 0 && request.percent < 1) {
+    document.getElementById("diff").innerHTML =
+      Number(
+        parseFloat(
+          Math.round(request.percent.toFixed(10) * 100) / 100
+        ).toFixed(2)
+      ) + "%";
+  } else if (request.percent > 0 || request.percent === 0) {
+    document.getElementById("diff").innerHTML =
+      Number(request.percent.toFixed(2)) + "%";
+  }
+  
+  // update collapsible accordion
+  if (request.DIFF.content !== undefined) {
+    document.getElementById("modify-text").innerHTML = "No changes yet.";
   } else {
-    document.getElementById("diff").innerHTML = "No changes yet.";
+    console.log(request.DIFF);
+    document.getElementById('modify-text').innerHTML = jsondiffpatch.formatters.html.format(request.DIFF, request.prev);
+    jsondiffpatch.formatters.html.hideUnchanged();  
   }
 }
 
@@ -142,13 +114,4 @@ function getAttributes(diffObj) {
       if (!val) { return 'Whitespace'; }
       return val;
   }
-  //   } else if (diffObj.value) {
-  //     if (!diffObj.value.replace(/\s/g, "").length) {
-  //       return "Whitespace";
-  //     } else {
-  //         return JSON.stringify(diffObj.value);
-  //     }
-  //   } else {
-  //     return "None";
-  //   }
 }

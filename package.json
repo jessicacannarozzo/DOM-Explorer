@@ -15,6 +15,7 @@
     "html2json": "^1.0.2",
     "humanize-ms": "^1.2.1",
     "iconv-lite": "^0.4.24",
+    "jsondiffpatch": "^0.3.11",
     "locate-path": "^5.0.0",
     "node-fetch-npm": "^2.0.2",
     "p-limit": "^2.2.1",

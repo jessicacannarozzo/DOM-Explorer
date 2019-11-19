@@ -1,4 +1,5 @@
 import { html2json } from 'html2json';
+import * as jsondiffpatch from 'jsondiffpatch';
 
 var diff = {};
 
@@ -16,6 +17,7 @@ try {
                 try {
                     chrome.runtime.sendMessage({
                         DIFF: diff,
+                        prev: html2json(response.oldValue),
                         percent: diffPercent
                     },
                     function (response) {
@@ -45,12 +47,10 @@ function calculateDiffPercent(response, cb) {
 // uses DiffDOM to make a diff of two HTML strings
 function makeDIFF(response, cb) {
     if (response.oldValue != undefined && response.newValue != undefined) { 
-        var diff = {};
+        let diff = {};
         console.log("Response: ", response);
 
         // replace whitespace and newline before diff
-        // var oldValue = JSON.stringify(response.oldValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
-        // var newValue = JSON.stringify(response.newValue).replace(/(?:\\[rn]|[\r\n]+)+/g, "");
         console.log(response.oldValue);
         let oldValue = html2json(response.oldValue); 
         let newValue = html2json(response.newValue); 
@@ -58,8 +58,12 @@ function makeDIFF(response, cb) {
         console.log(oldValue);
         console.log(newValue);
 
-        // diff = 
+        diff = jsondiffpatch.diff(oldValue, newValue);
         console.log(diff);
+
+        if (diff === undefined) {
+            diff = {content: false};
+        }
     
         cb(diff);
     }

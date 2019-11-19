@@ -15,6 +15,9 @@
       media="screen,projection"
     />
 
+    <!-- diff display -->
+    <link type="text/css" rel="stylesheet" href="../css/html.css"/>
+
     <!-- CSS override -->
     <link rel="stylesheet" href="../css/style.css" />
   </head>
@@ -22,6 +25,8 @@
   <body>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="../css/js/materialize.min.js"></script>
+    <script type="text/javascript" src="../css/js/jsondiffpatch.umd.js"></script>
+    <script type="text/javascript" src="../scripts/display-bundle.js"></script>
 
     <div class="content">
       <a
@@ -45,23 +50,7 @@
       <ul class="collapsible">
         <li>
           <div class="collapsible-header">
-            <i class="material-icons">add</i><span class="collapsible-text" id="">Additions</span>
-          </div>
-          <div class="collapsible-body">
-            <span id="add-text">None.</span>
-          </div>
-        </li>
-        <li>
-          <div class="collapsible-header">
-            <i class="material-icons">remove</i><span class="collapsible-text">Removals</span>
-          </div>
-          <div class="collapsible-body">
-            <span id="remove-text">None.</span>
-          </div>
-        </li>
-        <li>
-          <div class="collapsible-header">
-            <i class="material-icons">change_history</i><span class="collapsible-text">Modifications</span>
+              <i class="material-icons">change_history</i><span class="collapsible-text">Modifications</span>
           </div>
           <div class="collapsible-body">
             <span id="modify-text">None.</span>

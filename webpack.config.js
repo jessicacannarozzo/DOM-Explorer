@@ -18,9 +18,10 @@ module.exports = {
   },
   entry: {
     content: "./scripts/content.js",
+    display: "./css/formatters/html.js"
   },
   output: {
-    filename: 'webpack-bundle.js',
+    filename: '[name]-bundle.js',
     path: path.resolve(__dirname, 'scripts'),
   },
   plugins: [
@@ -28,5 +29,6 @@ module.exports = {
       template: "./views/popup.html",
       filename: "./popup.html"
     })
-  ]
+  ],
+  devtool: 'source-map'
 };

@@ -1,7 +1,7 @@
 body {
     display: inline-block;
-    width: 250px;
-    height: 350px;
+    min-width: 250px;
+    min-height: 250px;
 }
 
 .content {
@@ -38,6 +38,7 @@ body {
 
 .collapsible li:last-child .collapsible-body  {
     border-bottom: 0px;
+    display: inline-block;
 }
 
 span.collapsible-text {
@@ -49,6 +50,8 @@ span.collapsible-text {
 /* The following css is from a guide on how to create JS animations */
 /* https://www.youtube.com/watch?v=qB_EEdcj6-U */
 .ring {
+    margin-left: auto;
+    margin-right: auto;
     visibility: hidden;
     position: absolute;
     top: 10%;
