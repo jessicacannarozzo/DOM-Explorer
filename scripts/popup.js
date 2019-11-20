@@ -8,7 +8,6 @@ recordDOM.addEventListener("click", element => {
       currentWindow: true
     },
     tabs => {
-      console.log(document);
       chrome.storage.sync.get([String(tabs.url)], function(result) {
         console.log(result);
       });
@@ -70,8 +69,6 @@ function updatePopup(request) {
     document.getElementById("diff").innerHTML =
       Number(request.percent.toFixed(2)) + "%";
   }
-
-  console.log("WTF");
   
   // update collapsible accordion
   if (request.DIFF.content !== undefined) {
