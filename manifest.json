@@ -20,6 +20,6 @@
     "web_accessible_resources": [
         "/scripts/diff.js"
     ],
-    "content_security_policy": "script-src 'self'; object-src 'self'",
+    "content_security_policy": "script-src 'self' https://google.com; img-src 'self' https://google.com data: *; object-src 'self'",
     "manifest_version": 2
 }

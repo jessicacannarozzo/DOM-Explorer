@@ -51,7 +51,8 @@ function makeDIFF(response, cb) {
         console.log("Response: ", response);
 
         // replace whitespace and newline before diff
-        console.log(response.oldValue);
+        console.log("1" + response.oldValue);
+        console.log("2" + response.newValue);
         let oldValue = html2json(response.oldValue); 
         let newValue = html2json(response.newValue); 
 
@@ -70,16 +71,24 @@ function makeDIFF(response, cb) {
 }
 
 function createHTMLString() {
-    console.log(document.getElementsByTagName('center'));
-    if (!document.getElementsByTagName('center')) { return ''; }
+    // console.log(document.getElementsByTagName('center'));
+    // if (!document.getElementsByTagName('center')) { return ''; }
 
-    let centerHTML = document.getElementsByTagName('center');
-    let outputString = "";
+    // let centerHTML = document.getElementsByTagName('center');
+    // let outputString = "";
 
-    var i;
-    for (i = 0; i < centerHTML.length; i++) {
-        outputString = outputString + centerHTML[i].innerHTML;
-    }
-    console.log(outputString);
-    return outputString
+    // var i;
+    // for (i = 0; i < centerHTML.length; i++) {
+    //     outputString = outputString + centerHTML[i].innerHTML;
+    // }
+    // console.log(outputString);
+    // return outputString
+    let outputString = document.body.outerHTML;
+    let splitted = [];
+    splitted = outputString.split("<div id=\"wm-ipp-base\" lang=\"en\" style=\"display: block; direction: ltr;\"> </div>")
+    // console.log(outputString);
+
+    outputString = splitted[0].concat(splitted[1]);
+    // console.log(outputString);
+    return outputString;
 }
