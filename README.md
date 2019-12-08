@@ -14,3 +14,6 @@ A webpack JS file needs to be built in order to run node modules in the browser 
 6. Manually change an element on the webpage or visit the same webpage from another year
 7. Press the "DIFF" button again
 8. View the client-side changes
+
+## Viewing Results
+If you would like to view the raw details of the results that were discussed in the COMP4905 report for DOM Explorer, please view the .pdf or .docx files in the /Results directory.
