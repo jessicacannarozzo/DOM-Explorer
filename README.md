@@ -20,3 +20,5 @@ A webpack JS file needs to be built in order to run node modules in the browser 
 
 ## Viewing Results
 If you would like to view the raw details of the results that were discussed in the COMP4905 report for DOM Explorer, please view the .pdf or .docx files in the /Results directory.
+
+Note: All of the results are based on DOM Explorer version 2, which is based off the waybackmachine-diff branch.
