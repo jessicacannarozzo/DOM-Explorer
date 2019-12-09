@@ -1,6 +1,10 @@
 # DOM Explorer
 Takes a diff of the DOM of visited pages and depicts the perctange in which the page has changed. 
 
+<p align="center"> 
+<img src="./images/masterbranchpreview.PNG">
+</p>
+
 **It is recommended to use the *waybackmachine-diff* branch as it is more versatile and can be used on non-bookmarked websites. However, it does not save data under the full URL and instead uses the main name of a webpage. This means that in order to get a true diff of changes made to a specific webpage, avoid comparing two different webpages of the same url, such as https://github.com/ and https://github.com/marketplace**
 To use the wayback-machine branch, after cloning the repository, run `$ git checkout waybackmachine-diff`
 
