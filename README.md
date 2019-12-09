@@ -9,7 +9,9 @@ A webpack JS file needs to be built in order to run node modules in the browser 
 1. Run `npm install`
 2. Run `npm run build`
 3. Add the source folder to chrome://extensions in Chrome
+
 Optional to avoid warnings: run `$ rm node_modules/public-encrypt/test/*.pem` so as not to load key files in Google Chrome.
+
 4. Navigate to https://web.archive.org/ and select a webpage
 5. Press the "DIFF" button inside the extension's pop-up
 6. Manually change an element on the webpage or visit the same webpage from another year
